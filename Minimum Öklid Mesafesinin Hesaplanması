@@ -1,0 +1,18 @@
+def naive_euclidean_distance(point1, point2):
+    differences = [point1[x] - point2[x] for x in range(len(point1))]
+    differences_squared = [difference ** 2 for difference in differences]
+    sum_of_squares = sum(differences_squared)
+    return sum_of_squares ** 0.5
+
+point_1 = (1, 2)
+point_2 = (4, 7)
+print(naive_euclidean_distance(point_1, point_2))  # Sonuç: 5.830951894845301
+
+
+İkinci Yöntem;
+
+from scipy.spatial import distance
+
+point_1 = (1, 2)
+point_2 = (4, 7)
+print(distance.euclidean(point_1, point_2))  # Sonuç: 5.830951894845301
