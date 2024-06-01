@@ -1,0 +1,35 @@
+Tabloda verileri listeleyebilmek için PHP ile HTML kullanarak aşağıdaki adımları takip edebilirsiniz:
+
+Verileri çekmek için API'yi kullanın ve gerekli verileri alın.
+HTML dosyasında tablo oluşturun. Tabloya başlık eklemek için <thead> kullanabilirsiniz.
+Verileri tabloya eklemek için PHP döngüsü kullanın. Her bir veri için <tr> ve <td> etiketlerini kullanarak tablo hücrelerini oluşturun.
+Tabloyu HTML dosyasına ekleyin ve tarayıcıda görüntüleyin.
+Aşağıda basit bir örnek kod verilmiştir:
+
+Code
+<?php
+// Verileri çekmek için API'ye istek yapın ve verileri alın
+$data = // API'den veri çekme işlemi
+
+// HTML dosyasına tabloyu oluşturun
+echo '<table>';
+echo '<thead>';
+echo '<tr>';
+echo '<th>Header 1</th>';
+echo '<th>Header 2</th>';
+echo '</tr>';
+echo '</thead>';
+echo '<tbody>';
+
+// Verileri tabloya eklemek için döngü kullanın
+foreach ($data as $item) {
+    echo '<tr>';
+    echo '<td>' . $item['column1'] . '</td>';
+    echo '<td>' . $item['column2'] . '</td>';
+    echo '</tr>';
+}
+
+echo '</tbody>';
+echo '</table>';
+?>
+Yukarıdaki örnekte Header 1 ve Header 2 başlıklarıyla bir tablo oluşturulmuş ve API'den alınan veriler tabloya eklenmiştir. Tabloyu düzenlemek veya verileri farklı bir şekilde göstermek için HTML ve CSS'i istediğiniz gibi özelleştirebilirsiniz.
