@@ -1,0 +1,65 @@
+Basit bir şekilde verileri alır, bir tablo oluşturur ve kullanıcıya arama yapma imkanı sunar. Gerçek projelerde, daha karmaşık filtreleme işlevleri ekleyebilir ve güvenlik önlemlerini daha detaylı bir şekilde ele alabilirsiniz.
+
+<?php
+// Uzak API'ye bağlanma ve veri alımı
+$data = file_get_contents('https://example.com/api/data');
+$data = json_decode($data);
+
+// Filtreleme işlevi
+if(isset($_GET['search'])) {
+    $searchTerm = $_GET['search'];
+    $filteredData = array_filter($data, function($item) use ($searchTerm) {
+        return strpos($item->name, $searchTerm) !== false;
+    });
+} else {
+    $filteredData = $data;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Veri Tablosu</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>API Veri Tablosu</h1>
+    <form action="" method="GET">
+        <input type="text" name="search" placeholder="Arama yap...">
+        <button type="submit">Ara</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($filteredData as $item): ?>
+                <tr>
+                    <td><?php echo $item->id; ?></td>
+                    <td><?php echo $item->name; ?></td>
+                    <td><?php echo $item->email; ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</body>
+</html>
